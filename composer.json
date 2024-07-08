@@ -1,0 +1,27 @@
+{
+    "name": "bitis/boletos-nosso-numero",
+    "description": "Gera o Nosso Numero dos boletos",
+    "type": "library",
+    "authors": [
+        {
+            "name": "luishgp",
+            "email": "luis@bitis.com.br"
+        }
+    ],
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse src"
+    },
+    "require": {},
+    "require-dev": {
+        "phpstan/phpstan": "^0.11.16",
+        "phpstan/phpstan-strict-rules": "^0.11.1",
+        "phpstan/phpstan-deprecation-rules": "^0.11.2",
+        "pepakriz/phpstan-exception-rules": "^0.8.3",
+        "thecodingmachine/phpstan-safe-rule": "^0.1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bitis\\Boletos\\NossoNumero\\": "src/"
+        }
+    }
+}
