@@ -50,7 +50,7 @@ class BoletoSicoob implements NossoNumeroInterface
                 $constante = 7;
                 $cont = 0;
             }
-            $calculoDv = $calculoDv + (substr($sequencia, $num, 1) * $constante);
+            $calculoDv = $calculoDv + ((int) substr($sequencia, $num, 1) * $constante);
         }
 
         $Resto = $calculoDv % 11;
