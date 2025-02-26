@@ -2,6 +2,8 @@
 
 namespace Bitis\Boletos\NossoNumero\Tools;
 
+use DateTime;
+
 class Tools
 {
 
@@ -301,13 +303,37 @@ class Tools
     }
 
     /**
+     * Atualizado em 2025 para atender a nova data de referência
+     * 
      * @param $data
      * @return float|int
      */
     public static function fatorVencimento($data)
     {
-        [$dia, $mes, $ano] = explode("/", $data);
-        return (abs((self::dateToDays("1997", "10", "07")) - (self::dateToDays($ano, $mes, $dia))));
+        $dataBase = new DateTime("2025-02-22"); // Data fixa
+    
+        // Possíveis formatos aceitos
+        $formatosAceitos = [
+            "d/m/Y", "Y-m-d", "d-m-Y", "m/d/Y"
+        ];
+    
+        $dataVenc = null;
+    
+        // Tenta criar um objeto DateTime para cada formato
+        foreach ($formatosAceitos as $formato) {
+            $dataVenc = DateTime::createFromFormat($formato, $data);
+            if ($dataVenc !== false) {
+                break;
+            }
+        }
+    
+        $dataBase = new DateTime("2025-02-22");
+    
+        // Calcula a diferença de dias
+        $diferenca = $dataBase->diff($dataVenc)->days;
+    
+        // Ajusta o fato
+        return $diferenca + 1000;
     }
 
     private static function dateToDays($year, $month, $day)
